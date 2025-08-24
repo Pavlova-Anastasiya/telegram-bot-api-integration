@@ -1,0 +1,38 @@
+# === Python ===
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.db
+
+# === Environment ===
+.venv/
+env/
+venv/
+*.env
+
+# === IDE ===
+# PyCharm / IntelliJ
+.idea/
+*.iml
+
+# VSCode
+.vscode/
+
+# === OS files ===
+.DS_Store
+Thumbs.db
+
+# === Logs ===
+*.log
+
+# === Tests / coverage ===
+.coverage
+htmlcov/
+.pytest_cache/
+
+# === Project specific ===
+# Файл с заказами (если не нужен в репо)
+orders.json
+history.json
