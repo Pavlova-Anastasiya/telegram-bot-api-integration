@@ -3,3 +3,4 @@ python-dotenv
 requests
 httpx==0.24.1
 deep-translator>=1.11.4
+peewee>=3.17
