@@ -252,7 +252,7 @@ async def set_language(update: Update, context: CallbackContext):
     lang = query.data.split("lang:")[1]
     context.user_data["lang"] = lang
 
-    await query.edit_message_text(
+    await query.message.reply_text(
         text=t_ui("Привет! Выберите категорию товара:", lang),
         reply_markup=get_product_categories_keyboard(lang),
     )
@@ -279,7 +279,7 @@ async def handle_callback_query(update: Update, context: CallbackContext):
 
     if data.startswith("category:"):
         category = data.split("category:")[1]
-        await query.edit_message_text(
+        await query.message.reply_text(
             text=t_ui(f"Вы выбрали категорию: {get_category_label(category, lang)}", lang),
             reply_markup=get_models_keyboard(category, lang),
         )
@@ -306,7 +306,7 @@ async def handle_callback_query(update: Update, context: CallbackContext):
             )
 
             context.user_data.setdefault("cart", []).append(product_data)
-            await query.edit_message_text(text=text, parse_mode=ParseMode.MARKDOWN)
+            await query.message.reply_text(text=text, parse_mode=ParseMode.MARKDOWN)
 
             keyboard = [
                 [InlineKeyboardButton(t_ui("✅ Оформить заказ", lang), callback_data="confirm_order")],
@@ -340,7 +340,7 @@ async def confirm_order(update: Update, context: CallbackContext):
     lang = context.user_data.get("lang", "ru")
     await query.answer()
 
-    await query.edit_message_text(
+    await query.message.reply_text(
         t_ui(
             "Пожалуйста, введите адрес доставки в формате:\n\nФИО, телефон, ИИН, страна, город, индекс, улица, дом и квартира",
             lang,
@@ -362,7 +362,7 @@ async def ask_more(update: Update, context: CallbackContext):
     lang = context.user_data.get("lang", "ru")
     await query.answer()
 
-    await query.edit_message_text(
+    await query.message.reply_text(
         t_ui("Выберите категорию товара:", lang),
         reply_markup=get_product_categories_keyboard(lang),
     )
